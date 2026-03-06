@@ -53,15 +53,7 @@ git clone https://github.com/your-username/url-shortener.git
 
 ### 2. Go to the project directory
 
-```
-cd url-shortener
-```
-
 ### 3. Install dependencies
-
-```
-npm install
-```
 
 ### 4. Create environment variables
 
@@ -77,17 +69,7 @@ JWT_SECRET=your_secret_key
 
 ## ▶️ Run the Application
 
-Start the server:
-
-```
-npm start
-```
-
-or
-
-```
-node app.js
-```
+Start the server
 
 The application will run on:
 
