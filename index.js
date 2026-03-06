@@ -2,6 +2,7 @@ const express = require("express");
 const { connectToMongoDB } = require("./connection");
 const path = require("path");
 const cookieParser = require("cookie-parser");
+require("dotenv").config();
 
 //importing routers
 const urlRouter = require("./routes/url_router");
@@ -10,9 +11,9 @@ const { checkLogin, checkAuth, restrictTo } = require("./middlewares/auth");
 const staticRouter = require("./routes/staticRouter");
 
 const app = express();
-const PORT = 8000;
+const PORT = process.env.PORT;
 
-connectToMongoDB("mongodb://127.0.0.1:27017/URL_Shortener")
+connectToMongoDB(process.env.MONGO_URL)
   .then(() => console.log("MondoDB Connected!"))
   .catch((err) => console.log("Error Occured."));
 
