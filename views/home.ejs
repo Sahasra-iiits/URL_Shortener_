@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>URL Shortener</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body class="bg-[#f7f2fa] font-sans">
+
+    <!-- Sidebar -->
+    <div class="h-screen bg-[#643173] w-[80px] fixed flex flex-col items-center pt-6">
+        <a href="/" class="text-[#d4afcd] text-xl hover:scale-110 transition">
+            <i class="fa-solid fa-house-chimney"></i>
+        </a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="ml-[80px] py-5 px-5">
+        <div class="grid grid-cols-2 gap-6 mb-12">
+            
+            <div class="bg-[#d4afcd] rounded-3xl shadow-md p-12 flex flex-col justify-center">
+                <h1 class="text-8xl font-semibold text-[#381e3a] mb-5">
+                    URL<br/>Shortener
+                </h1>
+                <p class="text-xl text-[#4a4458]">
+                    Simplify Your Links. Monitor Every Click.
+                </p>
+            </div>
+
+            <div class="shadow-md">
+                <img src="/image.png" alt="Image" height="336" class="rounded-3xl">
+            </div>
+
+        </div>
+
+        <!-- Generated URL -->
+        <% if (locals.id) { %>
+        <div class="bg-white rounded-2xl shadow-md p-6 mb-10 text-center">
+            <p class="text-lg text-gray-600">Short URL Generated</p>
+            <p class="text-2xl font-semibold text-[#643173] mt-2">
+                localhost:8000/urls/<%= id %>
+            </p>
+        </div>
+        <% } %>
+
+        <!-- Input URL Block -->
+        <div class="bg-white rounded-3xl shadow-md p-10 mb-16 max-w-3xl mx-auto">
+            <form method="post" action="/urls" class="flex gap-4">
+
+                <input type="text"
+                    required
+                    name="url"
+                    placeholder="Enter the original URL"
+                    class="flex-1 px-6 py-4 rounded-full border border-gray-300 
+                           focus:outline-none focus:ring-2 focus:ring-[#643173] 
+                           transition text-xl" />
+
+                <button type="submit"
+                    class="px-8 py-4 rounded-full bg-[#643173] text-white 
+                           hover:bg-[#4e2459] transition">
+                    Generate
+                </button>
+
+            </form>
+        </div>
+
+        <!-- URL Table -->
+        <% if (locals.urls) { %>
+        <div class="bg-white rounded-3xl shadow-md p-10 overflow-x-auto mx-10">
+
+            <h2 class="text-2xl font-semibold mb-6 text-[#381e3a]">
+                Generated Short URLs
+            </h2>
+
+            <table class="w-full border-collapse">
+
+                <thead>
+                    <tr class="bg-[#f3edf7] text-left text-[#381e3a]">
+                        <th class="p-4">Original URL</th>
+                        <th class="p-4">Short ID</th>
+                        <th class="p-4">Clicks</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% urls.forEach((url) => { %>
+                    <tr class="border-b hover:bg-gray-100 transition">
+                        <td class="p-4 break-all">
+                            <%= url.original %>
+                        </td>
+                        <td class="p-4 text-[#643173]">
+                            <%= url.shortID %>
+                        </td>
+                        <td class="p-4">
+                            <%= url.clicks %>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+
+            </table>
+        </div>
+        <% } %>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</body>
+</html>

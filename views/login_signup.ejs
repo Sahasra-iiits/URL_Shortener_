@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>URL Shortener</title>
+</head>
+<body class="h-screen flex justify-center items-center bg-[#f7f2fa] font-sans">
+
+    <div class="w-[900px] h-[600px] flex rounded-3xl shadow-2xl overflow-hidden bg-white">
+
+        <!-- SIGNUP MAIN -->
+        <% if (locals.toggle === 0) { %>
+
+        <!-- Left Panel -->
+        <div class="flex flex-col w-1/2 bg-[#643173] justify-center items-center p-12">
+            <h1 class="text-white text-4xl font-semibold mb-6">
+                Welcome Back!
+            </h1>
+            <p class="text-[#d4afcd] text-center mb-6">
+                Stay connected by logging in with your credentials and continue your experience.
+            </p>
+            <form action="/login" method="get">
+                <button type="submit"
+                    class="px-8 py-3 rounded-full border border-white text-white 
+                           hover:bg-white hover:text-[#643173] transition">
+                    LOG IN
+                </button>
+            </form>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="flex flex-col w-1/2 bg-[#d4afcd] justify-center items-center p-12">
+            <h1 class="text-4xl font-semibold text-[#381e3a] mb-8">
+                Create Account
+            </h1>
+
+            <form action="/user/signup" method="post"
+                class="flex flex-col items-center w-full">
+
+                <input placeholder="Full Name" name="username" type="text" required
+                    class="w-[350px] h-[55px] bg-white my-3 px-4 rounded-full 
+                           focus:outline-none focus:ring-2 focus:ring-[#643173]" />
+
+                <input placeholder="Email" name="email" type="text" required
+                    class="w-[350px] h-[55px] bg-white my-3 px-4 rounded-full 
+                           focus:outline-none focus:ring-2 focus:ring-[#643173]" />
+
+                <input placeholder="Password" name="password" type="password" required
+                    class="w-[350px] h-[55px] bg-white my-3 px-4 rounded-full 
+                           focus:outline-none focus:ring-2 focus:ring-[#643173]" />
+
+                <button type="submit"
+                    class="mt-6 px-8 py-3 rounded-full bg-[#643173] text-white 
+                           hover:bg-[#4e2459] transition shadow">
+                    SIGN UP
+                </button>
+            </form>
+        </div>
+
+        <% } %>
+
+        <!-- LOGIN MAIN -->
+        <% if (locals.toggle === 1) { %>
+
+        <!-- Left Panel -->
+        <div class="flex flex-col w-1/2 bg-[#d4afcd] justify-center items-center p-12">
+            <h1 class="text-4xl font-semibold text-[#381e3a] mb-8">
+                Log In
+            </h1>
+            <% if (locals.error != null) { %>
+                <p class="p-2 bg-red-300 text-xl text-white">Incorrect Email or Password Entered.</p>
+            <% } %>
+            <form action="/user/login" method="post"
+                class="flex flex-col items-center w-full">
+
+                <input placeholder="Email" type="text" required name="email"
+                    class="w-[350px] h-[55px] bg-white my-3 px-4 rounded-full 
+                           focus:outline-none focus:ring-2 focus:ring-[#643173]" />
+
+                <input placeholder="Password" type="password" required name="password"
+                    class="w-[350px] h-[55px] bg-white my-3 px-4 rounded-full 
+                           focus:outline-none focus:ring-2 focus:ring-[#643173]" />
+
+                <button type="submit"
+                    class="mt-6 px-8 py-3 rounded-full bg-[#643173] text-white 
+                           hover:bg-[#4e2459] transition shadow">
+                    LOG IN
+                </button>
+            </form>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="flex flex-col w-1/2 bg-[#643173] justify-center items-center p-12">
+            <h1 class="text-white text-4xl font-semibold mb-6">
+                Hey There!
+            </h1>
+            <p class="text-[#d4afcd] text-center mb-6">
+                Begin your amazing journey by creating an account with us today.
+            </p>
+            <form action="/signup" method="get">
+                <button type="submit"
+                    class="px-8 py-3 rounded-full border border-white text-white 
+                           hover:bg-white hover:text-[#643173] transition">
+                    SIGN UP
+                </button>
+            </form>
+        </div>
+
+        <% } %>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</body>
+</html>
